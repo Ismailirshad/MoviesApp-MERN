@@ -10,7 +10,7 @@ const app = express();
 // Middleware
 app.use(
   cors({
-    origin: "http://localhost:5173",
+    origin: ["http://localhost:5173", "http://52.23.5.135/","https://movies-app-mern-mu.vercel.app/"],
     credentials: true,
   }),
 );
