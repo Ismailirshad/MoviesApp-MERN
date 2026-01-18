@@ -1,36 +1,36 @@
-import User from '../models/User.js';
-import jwt from 'jsonwebtoken';
+import User from "../models/User.js";
+import jwt from "jsonwebtoken";
 import dotenv from "dotenv";
 
 dotenv.config();
 
 export const protectRoute = async (req, res, next) => {
-    const { token } = req.cookies;
+  const { token } = req.cookies;
 
-    if (!token) {
-        return res.status(401).json({ message: 'No token found' });
+  if (!token) {
+    return res.status(401).json({ message: "No token found" });
+  }
+
+  try {
+    const tokenDecode = jwt.verify(token, process.env.JWT_SECRET);
+    const user = await User.findById(tokenDecode.id).select("-password");
+
+    if (!user) {
+      return res.status(400).json({ message: "User not found" });
     }
+    req.user = user;
 
-    try {
-        const tokenDecode = jwt.verify(token, process.env.JWT_SECRET);
-        const user = await User.findById(tokenDecode.id).select('-password');
-
-        if (!user) {
-            return res.status(400).json({ message: "User not found" });
-        }
-        req.user = user;
-
-        next();
-    } catch (error) {
-        console.error('Error in middleware:', error.message);
-        return res.status(401).json({ message: 'Invalid or expired token' });
-    }
+    next();
+  } catch (error) {
+    console.error("Error in middleware:", error.message);
+    return res.status(401).json({ message: "Invalid or expired token" });
+  }
 };
 
 export const adminRoute = async (req, res, next) => {
-    if (req.user && req.user.role === "admin") {
-        next();
-    } else {
-        return res.status(401).json({ message: "Access denied - Admin only" });
-    }
+  if (req.user && req.user.role === "admin") {
+    next();
+  } else {
+    return res.status(401).json({ message: "Access denied - Admin only" });
+  }
 };

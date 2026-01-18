@@ -11,26 +11,28 @@ This project features a clean UI, Role-Based Access Control (RBAC), and persiste
 ### **👤 User Features**
 - **Browse Movies:** Explore a collection of 250+ movies.
 - **Advanced Search:** Find movies by title instantly.
-- **Pagination & Sorting:** Efficiently navigate through large lists.
-- **Session Persistence:** Stay logged in even after refreshing or closing the browser.
+- **Pagination & Sorting:** Efficiently navigate through large lists with optimized data fetching.
+- **Session Persistence:** Stay logged in securely using HTTP-only JWT cookies.
 
 ### **🛡️ Admin Features**
-- **Dashboard:** Specialized management interface for administrators.
-- **CRUD Operations:** Create, update, and delete movie entries.
-- **RBAC:** Secure access restricted to authorized administrators only.
+- **Admin Dashboard:** Centralized hub for managing the movie catalog.
+- **Full CRUD Support:** Create, Read, Update, and Delete movies with ease.
+- **Admin Pagination:** Efficient management of large datasets in the dashboard.
+- **Protected Access:** Routes and actions secured via role-based middleware.
 
 ### **🏗️ Technical Highlights**
-- **Auth Flow:** Secure JWT-based authentication with `httpOnly` cookies.
-- **Clean Architecture:** Context API for state management and Axios for API communication.
-- **Responsive Design:** Beautifully styled with Material UI (MUI).
+- **State Management:** React Context API for global auth and data management.
+- **Component Architecture:** Reusable, memoized components (like `MovieCard` and `MovieRow`) for high performance.
+- **Backend Security:** BcryptJS for password hashing and JWT for secure session tokens.
+- **Modern UI:** Responsive design crafted with Material UI (MUI).
 
 ---
 
 ## 🛠️ Tech Stack
 
-- **Frontend:** React, Vite, Material UI, Axios, React Router.
-- **Backend:** Node.js, Express, MongoDB (Mongoose).
-- **Security:** JWT, BcryptJS, Cookie-parser.
+- **Frontend:** React 18, Vite, Material UI (MUI), Axios, React Router 6.
+- **Backend:** Node.js, Express.js, MongoDB (Mongoose).
+- **Security:** JWT (JSON Web Tokens), BcryptJS, Cookie-Parser.
 
 ---
 
@@ -43,8 +45,6 @@ List of things you need to install the project:
 ---
 
 ## ⚙️ Installation & Setup
-
-Follow these steps to get the project running locally:
 
 ### 1. Clone the repository
 ```bash
@@ -63,11 +63,11 @@ cd <folder-name>
    ```
 3. Configure environment variables:
    - Create a `.env` file in the `backend` folder.
-   - You can use `.env.example` as a template:
+   - Use `.env.example` as a template:
      ```bash
      cp .env.example .env
      ```
-   - Update `MONGO_URI` with your database connection string.
+   - Update `MONGO_URI` with your connection string.
 
 4. Start the backend server:
    ```bash
@@ -90,31 +90,20 @@ cd <folder-name>
 
 ---
 
-## 🔑 Demo Credentials
-
-| Role  | Username | Password |
-|-------|----------|----------|
-| User  | testuser | password123 |
-| Admin | admin    | admin123  |
-
-> **Note:** For the first setup, you can register a new user and adjust the role in the database or registration form if demo mode is active.
-
----
-
 ## 📂 Project Structure
 
 ```text
 ├── backend          # Express & Node.js server
-│   ├── controllers  # Business logic
-│   ├── models       # Database schemas
-│   ├── routes       # API endpoints
-│   └── server.js    # Entry point
+│   ├── controllers  # Business logic (Auth, Movies)
+│   ├── models       # Mongoose schemas (User, Movie)
+│   ├── routes       # Express API routes
+│   └── server.js    # Application entry point
 ├── frontend         # React & Vite application
 │   ├── src
-│   │   ├── api      # Axios instance configuration
-│   │   ├── context  # Auth & Movie contexts
-│   │   ├── pages    # Home, Login, Admin, etc.
-│   │   └── components # Reusable UI elements
+│   │   ├── api      # Centralized Axios configuration
+│   │   ├── components # Reusable UI (Navbar, MovieRow, MovieCard)
+│   │   ├── context  # Global State (Auth, Movie)
+│   │   └── pages    # Views (Home, Admin, Login, Register)
 └── README.md
 ```
 

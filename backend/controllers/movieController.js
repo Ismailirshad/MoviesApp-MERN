@@ -1,6 +1,5 @@
 import Movie from '../models/Movie.js';
 
-// Get all movies (no pagination)
 export const getAllMovies = async (req, res) => {
     try {
         const movies = await Movie.find({});
@@ -73,7 +72,6 @@ export const getMovieById = async (req, res) => {
     }
 };
 
-// Create new movie (Admin only)
 export const createMovie = async (req, res) => {
     try {
         const { title, rating, description, releaseDate, duration, imdbId, posterUrl } = req.body;
@@ -94,7 +92,6 @@ export const createMovie = async (req, res) => {
     }
 };
 
-// Update movie (Admin only)
 export const updateMovie = async (req, res) => {
     try {
         const movie = await Movie.findById(req.params.id);
@@ -115,7 +112,6 @@ export const updateMovie = async (req, res) => {
     }
 };
 
-// Delete movie (Admin only)
 export const deleteMovie = async (req, res) => {
     try {
         const movie = await Movie.findById(req.params.id);
