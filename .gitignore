@@ -1,0 +1,12 @@
+# Dependency directories
+node_modules/
+**/node_modules/
+
+# Environment variables (Security)
+.env
+.env.local
+**/.env
+
+# Build folders (Optional but recommended)
+dist/
+build/
