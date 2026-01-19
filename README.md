@@ -38,7 +38,7 @@ This project features a clean UI, Role-Based Access Control (RBAC), and persiste
 
 ## 📋 Prerequisites
 
-List of things you need to install the project:
+Before you begin, ensure you have the following installed:
 - [Node.js](https://nodejs.org/) (v16.0.0 or higher)
 - [MongoDB](https://www.mongodb.com/try/download/community) (Running locally or a Cloud Atlas URI)
 
@@ -46,47 +46,65 @@ List of things you need to install the project:
 
 ## ⚙️ Installation & Setup
 
-### 1. Clone the repository
+### 1. Clone the Repository
+
 ```bash
 git clone <your-repo-link>
-cd <folder-name>
+cd Movies
 ```
 
 ### 2. Backend Setup
-1. Navigate to the backend directory:
-   ```bash
-   cd backend
-   ```
-2. Install dependencies:
-   ```bash
-   npm install
-   ```
-3. Configure environment variables:
-   - Create a `.env` file in the `backend` folder.
-   - Use `.env.example` as a template:
-     ```bash
-     cp .env.example .env
-     ```
-   - Update `MONGO_URI` with your connection string.
 
-4. Start the backend server:
-   ```bash
-   npm start
-   ```
+1.  **Navigate to the backend directory:**
+    ```bash
+    cd backend
+    ```
+
+2.  **Install dependencies:**
+    ```bash
+    npm install
+    ```
+
+3.  **Configure environment variables:**
+    - Create a `.env` file in the `backend` folder.
+    - Add the following variables:
+      ```env
+      PORT=5000
+      MONGO_URI=your_mongodb_connection_string
+      JWT_SECRET=your_jwt_secret_key
+      NODE_ENV=development
+      ```
+
+4.  **Start the backend server:**
+    ```bash
+    npm start
+    # or for development mode:
+    npm run dev
+    ```
 
 ### 3. Frontend Setup
-1. Open a new terminal and navigate to the frontend directory:
-   ```bash
-   cd frontend
-   ```
-2. Install dependencies:
-   ```bash
-   npm install
-   ```
-3. Start the development server:
-   ```bash
-   npm run dev
-   ```
+
+1.  **Open a new terminal and navigate to the frontend directory:**
+    ```bash
+    cd frontend
+    ```
+
+2.  **Install dependencies:**
+    ```bash
+    npm install
+    ```
+
+3.  **Configure environment variables:**
+    - Create a `.env` file in the `frontend` folder.
+    - Add the API URL (matching your backend port):
+      ```env
+      VITE_API_URL=http://localhost:5000/api
+      ```
+
+4.  **Start the development server:**
+    ```bash
+    npm run dev
+    ```
 
 ---
 
