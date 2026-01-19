@@ -10,9 +10,10 @@ import {
 } from "@mui/material";
 import MovieCard from "../components/MovieCard";
 import { useMovies } from "../context/MovieContext";
+import MovieGridSkeleton from "../components/MovieGridSkeleton";
 
 const Search = () => {
-  const { movies, totalPages, fetchMovies } = useMovies();
+  const { movies, totalPages, fetchMovies, loading } = useMovies();
   const [query, setQuery] = useState("");
   const [page, setPage] = useState(1);
   const [hasSearched, setHasSearched] = useState(false);
@@ -84,7 +85,11 @@ const Search = () => {
         </Box>
       </Box>
 
-      {!hasSearched ? (
+      {loading ? (
+        <Grid container spacing={3} sx={{ mb: 6 }}>
+          <MovieGridSkeleton count={8} />
+        </Grid>
+      ) : !hasSearched ? (
         <Box sx={{ textAlign: "center", opacity: 0.5, mt: 10 }}>
           <Typography variant="h5">
             Enter a Movie keyword, Title or Description to explore the
@@ -127,6 +132,7 @@ const Search = () => {
           )}
         </>
       )}
+
     </Container>
   );
 };

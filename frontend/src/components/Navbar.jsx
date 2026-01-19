@@ -16,8 +16,10 @@ const Navbar = memo(() => {
   const location = useLocation();
 
   const handleLogout = () => {
+    if (window.confirm("Are you sure you want to log out?")){
     logout();
     navigate("/login");
+    }
   };
 
   const isActive = (path) =>

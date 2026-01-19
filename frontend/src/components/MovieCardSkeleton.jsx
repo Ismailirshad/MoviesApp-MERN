@@ -14,7 +14,7 @@ const MovieCardSkeleton = () => {
         {/* Poster */}
         <Skeleton
           variant="rectangular"
-          height={320}
+          height={380}
           animation="wave"
         />
 
